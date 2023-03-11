@@ -14,22 +14,23 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Date</th>
+                        <th>Device name</th>
                         <th>IP Address</th>
+                        <th>date</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach ($sessions as $session)
                         <tr>
-                            <td>{{substr($session->user_agent, 0, 40)}}</td>
+                            <td>{{$session->user_agent}}</td>
                             <td>{{ $session->ip_address }}</td>
+                            <td>{{ $session->date }}</td>
                             <td>
                                 <form action="{{ route('sessions.terminate', $session->id) }}" method="POST">
                                     @csrf
-
                                     @method('POST')
-                                    <button type="submit">Terminate Session</button>
+                                    <button class="btn btn-danger" type="submit">Terminate</button>
                                 </form>
                             </td>
                         </tr>
